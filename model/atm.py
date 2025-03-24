@@ -1,3 +1,4 @@
+import math
 from datetime import datetime
 import platform
 import os
@@ -103,24 +104,21 @@ class ATM:
             print("Por favor introduce un importe válido.")
             time.sleep(1)
 
-    def pagar_servicio(self, cliente, empresa, contrato, importe):
-        self.limpiar_pantalla()
+    @staticmethod
+    def pagar_servicio(cliente, empresa, contrato, importe):
+        if cliente.cuentas_bancarias[0].saldo_disponible >= importe:
+            cliente.cuentas_bancarias[0].saldo_disponible -= importe
+            print("El pago se realizó con éxito. A continuación, te comparto tu ticket.\n\n")
+            print("Empresa: ", empresa)
+            print("Contrato: ", contrato)
+            print("Importe pagado: ", importe)
+            print("Fecha y hora de la operación: ", datetime.now())
+            raiz_cuadrada = math.sqrt(25)
+            print(raiz_cuadrada)
+        else:
+            print('Saldo insuficiente en la cuenta ', cliente.cuentas_bancarias[0].tipo_cuenta_bancaria)
 
-        try:
-            if cliente.cuentas_bancarias[0].saldo_disponible >= importe:
-                cliente.cuentas_bancarias[0].saldo_disponible -= importe
-                print("El pago se realizó con éxito. A continuación, te comparto tu ticket.\n\n")
-                print("Empresa: ", empresa)
-                print("Contrato: ", contrato)
-                print("Importe pagado: ", importe)
-                print("Fecha y hora de la operación: ", datetime.now())
-            else:
-                print('Saldo insuficiente en la cuenta ', cliente.cuentas_bancarias[0].tipo_cuenta_bancaria)
-
-        except ValueError:
-            print("Por favor introduce un importe válido.")
-            time.sleep(1)
-
+'''
     def modulo_pagar_servicios(self, cliente):
 
         self.limpiar_pantalla()
@@ -134,25 +132,25 @@ class ATM:
                     contrato = input("Ingresa el número de contrato que tienes con CFE: ")
                     importe = int(input("Ingresa la cantidad que deseas pagar: "))
 
-                    self.pagar_servicio(cliente, 'CFE', contrato, importe)
+                    ATM.pagar_servicio(cliente, 'CFE', contrato, importe)
                 case 2:
                     self.limpiar_pantalla()
                     contrato = input("Ingresa el número de contrato que tienes con Flamagas: ")
                     importe = int(input("Ingresa la cantidad que deseas pagar: "))
 
-                    self.pagar_servicio(cliente, 'Flamagas', contrato, importe)
+                    ATM.pagar_servicio(cliente, 'Flamagas', contrato, importe)
                 case 3:
                     self.limpiar_pantalla()
                     contrato = input("Ingresa el número de contrato que tienes con el proveedor de Internet y/o Teléfono: ")
                     importe = int(input("Ingresa la cantidad que deseas pagar: "))
 
-                    self.pagar_servicio(cliente, 'izzi', contrato, importe)
+                    ATM.pagar_servicio(cliente, 'izzi', contrato, importe)
                 case 4:
                     self.limpiar_pantalla()
                     contrato = input("Ingresa el número de contrato que tienes con el proveedor de Telefonía: ")
                     importe = int(input("Ingresa la cantidad que deseas pagar: "))
 
-                    self.pagar_servicio(cliente, 'Telcel', contrato, importe)
+                    ATM.pagar_servicio(cliente, 'Telcel', contrato, importe)
                 case 0:
                     pass
                 case _:
@@ -161,7 +159,6 @@ class ATM:
         except ValueError:
             print("Por favor introduce un valor válido.")
             time.sleep(2)
+'''
     #endregion
-
-#cajero1 = ATM("BBVA", "ESIME-Culhuacan", 100000)
 

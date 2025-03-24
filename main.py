@@ -78,7 +78,43 @@ def main():
                                         cajero.modulo_depositar_efectivo(cliente)
                                     case 4:
                                         cajero.menu_pago_servicio()
-                                        cajero.modulo_pagar_servicios(cliente)
+                                        #cajero.modulo_pagar_servicios(cliente)
+                                        try:
+                                            opcion_principal = int(input('Opción: '))
+
+                                            match opcion_principal:
+                                                case 1:
+                                                    limpiar_pantalla()
+                                                    contrato = input("Ingresa el número de contrato que tienes con CFE: ")
+                                                    importe = int(input("Ingresa la cantidad que deseas pagar: "))
+
+                                                    ATM.pagar_servicio(cliente, 'CFE', contrato, importe)
+                                                case 2:
+                                                    limpiar_pantalla()
+                                                    contrato = input("Ingresa el número de contrato que tienes con Flamagas: ")
+                                                    importe = int(input("Ingresa la cantidad que deseas pagar: "))
+
+                                                    ATM.pagar_servicio(cliente, 'Flamagas', contrato, importe)
+                                                case 3:
+                                                    limpiar_pantalla()
+                                                    contrato = input("Ingresa el número de contrato que tienes con el proveedor de Internet y/o Teléfono: ")
+                                                    importe = int(input("Ingresa la cantidad que deseas pagar: "))
+
+                                                    ATM.pagar_servicio(cliente, 'izzi', contrato, importe)
+                                                case 4:
+                                                    limpiar_pantalla()
+                                                    contrato = input("Ingresa el número de contrato que tienes con el proveedor de Telefonía: ")
+                                                    importe = int(input("Ingresa la cantidad que deseas pagar: "))
+
+                                                    ATM.pagar_servicio(cliente, 'Telcel', contrato, importe)
+                                                case 0:
+                                                    pass
+                                                case _:
+                                                    print('Opción inválida')
+                                                    time.sleep(1)
+                                        except ValueError:
+                                            print("Por favor introduce un valor válido.")
+                                            time.sleep(2)
                                     case 0:
                                         print('Gracias por utilizar nuestro cajero, recoje tu tarjeta al finalizar.')
                                         print('Cerrando sesión...')
