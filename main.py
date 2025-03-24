@@ -1,3 +1,12 @@
+"""
+PRACTICA 2. CAJERO AUTOMÁTICO
+
+Integrantes:
+    Maria de la Luz Ojeda Hernandez
+    Ricardo Aguilar Ortega
+    Sara Josefina Martinez Jimenez
+    Uriel Erandy González Cárdenas
+"""
 from model.atm import ATM
 from model.cliente import Cliente
 from model.cuenta_bancaria import CuentaBancaria
