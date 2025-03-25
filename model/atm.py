@@ -24,7 +24,7 @@ class ATM:
     def menu_principal(self, cliente):
         print('******** Cajero Automático de ', self.banco, ' Sucursal ', self.ubicacion, ' ********\n')
         if cliente.sexo == "Hombre":
-            print('Bienvenido ', cliente.nombre, ' indica la operación que deseas realizar\n')
+            print('Bienvenid@ ', cliente.nombre, ' indica la operación que deseas realizar\n')
         print('1. Consultar saldo\n')
         print('2. Retirar Efectivo\n')
         print('3. Depositar Efectivo\n')
