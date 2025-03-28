@@ -85,19 +85,26 @@ class ATM:
             print("Por favor introduce un importe válido.")
             time.sleep(1)
 
-    # Control para depositar efectivo
-    def modulo_depositar_efectivo(self, cliente):
+    # Control para depositar efectivo. SOBRECARGA
+    def modulo_depositar_efectivo(self, cliente, **kwargs):
         self.limpiar_pantalla()
         print('********** Depositar Efectivo **********\n')
 
         try:
-            monto_depositar = int(input('Introduce la cantidad que estás depositando: '))
+            monto_depositar = kwargs.get("monto")
+            if monto_depositar is None:
+                monto_depositar = int(input('Introduce la cantidad que estás depositando: '))
+            
+            descripcion = kwargs.get("descripcion")
+            if descripcion is None:
+                descripcion = input('Introduce una descripción para el depósito: ')
 
             if monto_depositar > 0:
                 self.total_efectivo += monto_depositar
                 cliente.cuentas_bancarias[0].saldo_disponible += monto_depositar
-
-                print("Tu dinero se abonó con éxito.\n\n")
+                
+                print("Tu dinero se abonó con éxito.\n")
+                print("Descripción: ", descripcion)
                 print("Tu saldo actual es: ", cliente.cuentas_bancarias[0].saldo_disponible)
 
         except ValueError:
